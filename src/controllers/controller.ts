@@ -13,9 +13,15 @@ function getTime(req: Request, res: Response, next: any){
         const clientHour = parseInt(req.params.hour);
 
         if(!clientHour){
-            return res.status(StatusCodes.BAD_REQUEST).end();        
+            res.status(StatusCodes.BAD_REQUEST).json({
+                "status": 400,
+                "error": "O valor informado está em formato incorreto."
+            }).end();
         } else if(clientHour > 24){
-            res.status(StatusCodes.NOT_ACCEPTABLE).end();
+            res.status(StatusCodes.BAD_REQUEST).json({
+                "status": 400,
+                "error": "O valor informado está em formato incorreto."
+            }).end();
         } else{
             const result = TempleRoom.calcDaysInTemple(clientHour);
 

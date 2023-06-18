@@ -1,0 +1,61 @@
+{   
+    "openapi": "3.0.0",
+    "info": {
+        "title": "sala do templo service documentation.",
+        "description": "API criada para fins didáticos.",
+        "termsOfService": "http://localhost:3001/terms",
+        "contact": {
+            "email": "menezes.jrafael@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/",
+            "description": "Develop enviroment"
+        }
+    ],
+    "paths": { 
+        "/time/{hour}": {
+            "get": {                
+                "summary": "Converter horas dias.",
+                "description": "Esta função irá retornar a quantidade de dias que uma pessoa ficará na sala do templo de Kami Sama a partir de uma quantidade de horas.",
+                "parameters": [{
+                        "name": "hour",
+                        "in": "path",
+                        "description": "Quantidade de horas que será convertida",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "horas": {
+                                            "type": "integer"
+                                        },
+                                        "dias na sala do templo": {
+                                            "type": "number"
+                                        },
+                                        "anime": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "O valor informado está em formato incorreto."
+                    }
+                }            
+            }
+        }        
+    }
+}
